@@ -2,7 +2,7 @@ Project Requirements
 - mysqlconnector jar file
 - xampp local server
   
-Database : airlinemanagementsystem(example name)
+Database : airlinemanagementsystem(example name).
 Tables required :
 - login
 - passenger
@@ -13,7 +13,7 @@ The airline management system comprises six essential modules:
 1. Login Module:
    - Importance: The login module is critical for security and user access control. It ensures that only authorized personnel can access the system, protecting sensitive airline data and operations from unauthorized access.
 
-2. Dashboard Module:*
+2. Dashboard Module:
    - Importance: The dashboard provides a central hub for users to access key information and navigate to other modules efficiently. It offers a user-friendly interface and helps users quickly access relevant data and functionalities.
 
 3. Manage Flight Module:
