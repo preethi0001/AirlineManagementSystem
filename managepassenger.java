@@ -252,7 +252,7 @@ public class managepassenger extends javax.swing.JFrame {
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ams", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinemanagementsystem", "root", "");
             String sql = "insert into managepassenger values (?,?,?,?,?)";
             PreparedStatement ptst= con.prepareStatement(sql);
             ptst.setString(1,pn.getText());
@@ -281,7 +281,7 @@ public class managepassenger extends javax.swing.JFrame {
             String passport=pass.getText();
             String phone=ph.getText();
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ams", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinemanagementsystem", "root", "");
 
             String sql= "UPDATE `managepassenger` SET `name`='"+name+"',`gender`='"+gender+"',`nationality`='"+nationaliy+"',`passportnumber`='"+passport+"',`phone`='"+phone+"'";
             PreparedStatement ptst = con.prepareStatement(sql);
@@ -302,7 +302,7 @@ public class managepassenger extends javax.swing.JFrame {
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ams", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinemanagementsystem", "root", "");
             Statement st = con.createStatement();
             String sql ="SELECT * from managepassenger";
             PreparedStatement ptst= con.prepareStatement(sql);
@@ -326,7 +326,7 @@ public class managepassenger extends javax.swing.JFrame {
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ams", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinemanagementsystem", "root", "");
             Statement st = con.createStatement();
 
             String phone= ph.getText();

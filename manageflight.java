@@ -216,7 +216,7 @@ public class manageflight extends javax.swing.JFrame {
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ams", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinemanagementsystem", "root", "");
             String sql = "insert into manageflight values (?,?,?,?,?)";
             PreparedStatement ptst= con.prepareStatement(sql);
             ptst.setString(1,fc.getText());
@@ -225,7 +225,7 @@ public class manageflight extends javax.swing.JFrame {
             ptst.setString(4,tof.getText());
             ptst.setString(5,nos.getText());
             ptst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Data inserted Succesfully!");
+            JOptionPane.showMessageDialog(this, "Data of flight " + fc.getText() + " inserted successfully!");
             con.close();
         }
         catch(Exception e)
@@ -239,7 +239,7 @@ public class manageflight extends javax.swing.JFrame {
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/ams","root","");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinemanagementsystem","root","");
             Statement st=con.createStatement();
             String sql="select * from manageflight";
             PreparedStatement ptst=con.prepareStatement(sql);
@@ -264,14 +264,14 @@ public class manageflight extends javax.swing.JFrame {
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ams", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinemanagementsystem", "root", "");
             Statement st = con.createStatement();
 
             String id= fc.getText();
             String sql = "DELETE FROM `manageflight` WHERE flightcode='"+id+"'";
             PreparedStatement ptst = con.prepareStatement(sql);
             ptst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Data deleted succsessfully");
+            JOptionPane.showMessageDialog(this, "Data of flight " + id + " deleted successfully!");
             con.close();
         }
         catch(Exception e)
@@ -291,13 +291,13 @@ public class manageflight extends javax.swing.JFrame {
             String tak=tof.getText();
             String noofseat=nos.getText();
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ams", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinemanagementsystem", "root", "");
 
             String sql= "UPDATE `manageflight` SET `source`='"+source+"',`destination`='"+des+"',`takeoff`='"+tak+"',`noofseats`='"+noofseat+"' WHERE flightcode='"+id+"'";
             PreparedStatement ptst = con.prepareStatement(sql);
             ptst.execute();
 
-            JOptionPane.showMessageDialog(this, "Record Updated!");
+            JOptionPane.showMessageDialog(this, "Data of flight " + fc.getText() + " updated successfully!");
         }
         catch(Exception e)
         {

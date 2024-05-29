@@ -280,12 +280,11 @@ public class ticketbooking extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ams", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinemanagementsystem", "root", "");
             String sql = "insert into ticketbooking values (?,?,?,?,?,?,?)";
-            PreparedStatement ptst= con.prepareStatement(sql);
+            PreparedStatement ptst = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ptst.setString(1,pid.getText());
             ptst.setString(2,pn.getText());
             ptst.setString(3,fc.getText());
@@ -294,10 +293,23 @@ public class ticketbooking extends javax.swing.JFrame {
             ptst.setString(6,amt.getText());
             ptst.setString(7,n.getText());
 
-            ptst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Data inserted Succesfully!");
-            con.close();
+            int rowsAffected = ptst.executeUpdate();
+
+            // Check if the row was inserted successfully
+            if (rowsAffected > 0) {
+                // Retrieve the auto-generated keys
+                ResultSet generatedKeys = ptst.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int ticketId = generatedKeys.getInt(1); // Assuming the auto-generated key is an integer
+                    JOptionPane.showMessageDialog(this, "Data of flight " + fc.getText() + " inserted successfully! Ticket ID: " + ticketId);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Failed to retrieve ticket ID after insertion.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed to insert data of flight " + fc.getText());
+            }
         }
+
         catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, e);
@@ -343,7 +355,7 @@ public class ticketbooking extends javax.swing.JFrame {
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ams", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinemanagementsystem", "root", "");
             Statement st = con.createStatement();
             String sql ="SELECT * from ticketbooking";
             PreparedStatement ptst= con.prepareStatement(sql);

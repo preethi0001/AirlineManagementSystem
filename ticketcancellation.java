@@ -113,13 +113,17 @@ public class ticketcancellation extends javax.swing.JFrame {
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ams", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinemanagementsystem", "root", "");
             Statement st = con.createStatement();
             String ticketid= tid.getText();
             String sql = "DELETE FROM `ticketbooking` WHERE id='"+ticketid+"'";
             PreparedStatement ptst = con.prepareStatement(sql);
-            ptst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Data deleted succsessfully");
+            int rowsAffected = ptst.executeUpdate();
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(this, "Ticket deleted successfully");
+            } else {
+                JOptionPane.showMessageDialog(this, "No ticket found with the specified ID");
+            }
             con.close();
 
         }

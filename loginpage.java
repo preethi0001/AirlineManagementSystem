@@ -123,7 +123,7 @@ public class loginpage extends javax.swing.JFrame {
             String un  = user.getText();
             String pw = pass.getText();
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ams", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinemanagementsystem", "root", "");
             Statement st= con.createStatement();
             String sql = "Select * from login";
             ResultSet rs = st.executeQuery(sql);
