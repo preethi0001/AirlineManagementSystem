@@ -127,6 +127,7 @@ public class loginpage extends javax.swing.JFrame {
             Statement st= con.createStatement();
             String sql = "Select * from login";
             ResultSet rs = st.executeQuery(sql);
+            boolean flag = true;
             while(rs.next())
             {
                 String username = rs.getString("username");
@@ -134,13 +135,13 @@ public class loginpage extends javax.swing.JFrame {
 
                 if(un.equals(username) && pw.equals(password))
                 {
+                    flag=false;
                     new dashboard().setVisible(true);
                 }
-//                else
-//                {
-//                    JOptionPane.showMessageDialog(this, "Username or Password is incorrect!");
-//                }
             }
+            if(flag)
+                JOptionPane.showMessageDialog(this, "Username or Password is incorrect!");
+
 
         }
         catch(Exception e)
